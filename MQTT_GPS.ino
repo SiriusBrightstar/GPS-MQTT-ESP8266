@@ -1,6 +1,6 @@
 /*
 	Microcontroller:	NodeMCU (ESP8266)
-	GPS Module:			Ublox NEO-6m
+	GPS Module:		Ublox NEO-6m
 	TinyGPSPlus:		https://github.com/mikalhart/TinyGPSPlus
 	PubSubClient:		https://github.com/knolleary/pubsubclient
 */
@@ -10,9 +10,9 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS++.h>
 
-const char* ssid = "SSID";
-const char* password = "PASSWORD";
-const char* mqtt_server = "MQTT ADDRESS";
+const char* ssid = "SSID";				//Change
+const char* password = "PASSWORD";			//Change
+const char* mqtt_server = "MQTT_SERVER_IP_ADDRESS";	//Change
 const char* pub_LAT = "GPS/Latitude";
 const char* pub_LON = "GPS/Longitude";
 static const int RXPin = 4, TXPin = 5;
@@ -58,7 +58,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
 }
 
 void reconnect() {
-  // Loop until we're reconnected
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Create a random client ID
@@ -112,13 +111,13 @@ void loop() {
         Serial.println(payload_Lon);
         client.publish(pub_LAT, payload_Lat);
         client.publish(pub_LON, payload_Lon);
-        Serial.println("> MQTT data published");
+        Serial.println("GPS DATA PUBLISHED VIA MQTT");
         Serial.println("****End****");
         Serial.println();
         delay(writeInterval);// delay 
         } 
         else
-          Serial.println(F("INVALID"));
+          Serial.println(F("SOMETHING'S WRONG"));
     }
 
   if (millis() > 5000 && gps.charsProcessed() < 10)
