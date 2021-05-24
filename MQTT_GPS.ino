@@ -1,5 +1,6 @@
 /*
 	Microcontroller:	NodeMCU (ESP8266)
+	Platform:		Arduino IDE
 	GPS Module:		Ublox NEO-6m
 	TinyGPSPlus:		https://github.com/mikalhart/TinyGPSPlus
 	PubSubClient:		https://github.com/knolleary/pubsubclient
