@@ -25,9 +25,9 @@ hostname -I
 ```
 To get Latitude:
 ```
-mosquitto_sub -d -t GPS/Latitude
+mosquitto_sub -t GPS/Latitude
 ```
 To get Longitude:
 ```
-mosquitto_sub -d -t GPS/Longitude
+mosquitto_sub -t GPS/Longitude
 ```
