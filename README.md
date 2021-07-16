@@ -1,5 +1,11 @@
-# MQTT-Stuff
-Couple of MQTT Codes I wrote for a Project
+# GPS-MQTT-ESP8266
+![Badge](https://img.shields.io/badge/Arduino-ESP8266-blue?style=for-the-badge&logo=arduino)
+![Badge2](https://img.shields.io/badge/NodeJS-v14.7.3-green?style=for-the-badge&logo=node.js)
+
+Couple of MQTT Programs I wrote for a Project. Uses ESP8266 (Tested on NodeMCU) & uBlox NEO-6m GPS Module. This repo contains:
+* Program to send GPS data over MQTT.
+* Program to test your GPS module.
+* JavaScript Program to retrive the GPS data from MQTT Broker.
 
 To test locally you can use Mosquitto MQTT Broker (https://mosquitto.org/).
 Instructions for Linux:
