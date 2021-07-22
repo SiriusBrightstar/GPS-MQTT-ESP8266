@@ -7,49 +7,22 @@
         "info": ""
     },
     {
-        "id": "69cf2403189cbf49",
-        "type": "mqtt-broker",
-        "name": "RPi_Local_MQTT",
-        "broker": "192.168.1.136",
-        "port": "1883",
-        "clientid": "",
-        "usetls": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "sessionExpiry": ""
-    },
-    {
         "id": "b8a3f9259b82dd9f",
         "type": "mqtt in",
         "z": "49b0264b880b8608",
         "name": "Longitude",
-        "topic": "GPS/Longitude",
+        "topic": "lon",
         "qos": "2",
-        "datatype": "utf8",
+        "datatype": "json",
         "broker": "69cf2403189cbf49",
         "nl": false,
         "rap": true,
         "rh": 0,
         "x": 240,
-        "y": 240,
+        "y": 400,
         "wires": [
             [
-                "da462ce616a0cc20",
-                "2f5a1137f54e861c",
-                "f5643e8ad52c67d8"
+                "e7e0e69bccbee4cb"
             ]
         ]
     },
@@ -58,20 +31,18 @@
         "type": "mqtt in",
         "z": "49b0264b880b8608",
         "name": "Latitude",
-        "topic": "GPS/Latitude",
+        "topic": "lat",
         "qos": "2",
-        "datatype": "utf8",
+        "datatype": "json",
         "broker": "69cf2403189cbf49",
         "nl": false,
         "rap": true,
         "rh": 0,
         "x": 250,
-        "y": 160,
+        "y": 240,
         "wires": [
             [
-                "da462ce616a0cc20",
-                "2f5a1137f54e861c",
-                "f5643e8ad52c67d8"
+                "e7e0e69bccbee4cb"
             ]
         ]
     },
@@ -92,69 +63,13 @@
         "panlock": "false",
         "zoomlock": "false",
         "hiderightclick": "false",
-        "coords": "none",
+        "coords": "deg",
         "showgrid": "true",
         "allowFileDrop": "false",
         "path": "/worldmap",
         "x": 880,
-        "y": 200,
+        "y": 320,
         "wires": []
-    },
-    {
-        "id": "da462ce616a0cc20",
-        "type": "json",
-        "z": "49b0264b880b8608",
-        "name": "MQTT2JSON",
-        "property": "payload",
-        "action": "str",
-        "pretty": true,
-        "x": 460,
-        "y": 200,
-        "wires": [
-            [
-                "59280760319b959f"
-            ]
-        ],
-        "inputLabels": [
-            "GPS Data"
-        ],
-        "outputLabels": [
-            "JSON GPS_Data"
-        ]
-    },
-    {
-        "id": "2f5a1137f54e861c",
-        "type": "debug",
-        "z": "49b0264b880b8608",
-        "name": "MQTT_Debug",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 460,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "f5643e8ad52c67d8",
-        "type": "function",
-        "z": "49b0264b880b8608",
-        "name": "",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 140,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "59280760319b959f",
@@ -164,12 +79,128 @@
         "depth": 20,
         "layer": "combined",
         "smooth": false,
-        "x": 670,
-        "y": 200,
+        "x": 690,
+        "y": 320,
         "wires": [
             [
                 "e6c56dacf032f8db"
             ]
         ]
+    },
+    {
+        "id": "e7e0e69bccbee4cb",
+        "type": "join",
+        "z": "49b0264b880b8608",
+        "name": "MQTT_Topics_Join",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "1",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 470,
+        "y": 320,
+        "wires": [
+            [
+                "28c9888e04a8d757",
+                "59280760319b959f",
+                "621eef22e3f9c868"
+            ]
+        ]
+    },
+    {
+        "id": "28c9888e04a8d757",
+        "type": "debug",
+        "z": "49b0264b880b8608",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "652a2fc7fd6a7be2",
+        "type": "mqtt in",
+        "z": "49b0264b880b8608",
+        "name": "ID",
+        "topic": "name",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "69cf2403189cbf49",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 250,
+        "y": 320,
+        "wires": [
+            [
+                "e7e0e69bccbee4cb"
+            ]
+        ]
+    },
+    {
+        "id": "621eef22e3f9c868",
+        "type": "worldmap",
+        "z": "49b0264b880b8608",
+        "name": "MQTT_Location_Live",
+        "lat": "",
+        "lon": "",
+        "zoom": "15",
+        "layer": "OSM",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "true",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "false",
+        "coords": "deg",
+        "showgrid": "true",
+        "allowFileDrop": "false",
+        "path": "/live",
+        "x": 740,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "69cf2403189cbf49",
+        "type": "mqtt-broker",
+        "name": "RPi_Local_MQTT",
+        "broker": "192.168.29.136",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
     }
 ]
