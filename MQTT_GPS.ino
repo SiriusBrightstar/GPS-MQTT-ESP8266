@@ -4,6 +4,12 @@
 	GPS Module:		Ublox NEO-6m
 	TinyGPSPlus:		https://github.com/mikalhart/TinyGPSPlus
 	PubSubClient:		https://github.com/knolleary/pubsubclient
+	
+	Dependency Graph
+	|-- <PubSubClient>	2.8.0
+	|-- <TinyGPSPlus> 	1.0.2
+	|-- <EspSoftwareSerial> 6.12.7
+	|-- <ESP8266WiFi> 	1.0
 */
 
 #include <ESP8266WiFi.h>
