@@ -37,3 +37,7 @@ To get Longitude:
 ```
 mosquitto_sub -t GPS/Longitude
 ```
+
+## Node-RED Flow
+
+![NodeRED_Flow](https://user-images.githubusercontent.com/62252266/127009948-5af119d1-f475-49f1-a0ea-b17cbf61baaa.png)
