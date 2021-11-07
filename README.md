@@ -21,7 +21,7 @@ sudo systemctl enable mosquitto.service
 ```
 To check install version, status
 ```
-mosquitto -v
+sudo mosquitto -v
 ```
 If it says **"Error: Address already in use"** then it's properly installed.
 
